@@ -49,7 +49,6 @@ function makePersonObject(id, name, email) {
 }
 
 
-
 /**
  * ### Challenge `getName`
  * 
@@ -63,8 +62,8 @@ function makePersonObject(id, name, email) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(objName) {
-  return 'Hello, my name is ' + objName.name;
+function getName(personObject) {
+  return 'Hello, my name is ' + personObject.name;
 }
 
 /**
@@ -147,7 +146,7 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  return 'The car is a ' inventory.car_make inventory.car_model  
+  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`
 }
 
 /**
@@ -161,8 +160,9 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(inventory) {
+  const lastCar = inventory[inventory.length - 1];
+  return `This is a ${lastCar.car_make} ${lastCar.car_model}`
 }
 
 /**
@@ -177,8 +177,14 @@ function getLastCarInfo(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
+function getCarInfoById(inventory, id) {
   /* code here */
+  for (i=0; i < inventory.length; i++) {
+    if (inventory[i],id === id) {
+      const carID = inventory[i];
+      return `This is a ${carID.car_make} ${carID.car_model}`
+    }
+  }
 }
 
 /**
@@ -189,8 +195,10 @@ function getCarInfoById(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
+function sortCarInventory(inventory) {
   /* code here */
+  const sortedCars = inventory.sort((a, b) => (a.car_model > b.car_model) ? 1 : -1)
+  return sortedCars
 }
 
 /**
@@ -202,8 +210,12 @@ function sortCarInventory(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(inventory) {
+  let carYears = []
+  for (i=0; i < inventory.length; i++) {
+    carYears.push(inventory[i].car_year);
+  }
+  return carYears
 }
 
 /**
